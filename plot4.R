@@ -19,11 +19,7 @@ head(EP.Dataset$Date)    # to view what the date format looks like
 # Need the data between Feb 1 and 2 of 2007 only
 EPData <-subset(EP.Dataset, Date >= "2007-02-01" & Date <= "2007-02-02")
 nrow(EPData)   # 2880 rows
-class(EPData$Global_active_power)  # character.  Needs to converted to numeric.
-
-# changing  the class of the Global Active Power column from character to numeric
-EPData$Global_active_power <- as.numeric(EPData$Global_active_power)
-class(EPData$Global_active_power)  # numeric.  Confirming
+class(EPData$Global_active_power)  # numeric
 
 ## Joining the date and time to create a new column called "DateTime"
 EPData$DateTime <- as.POSIXct(paste(EPData$Date, EPData$Time),
@@ -69,6 +65,6 @@ with(EPData, plot(DateTime,Global_reactive_power,type= "l",
 ## Added the res argument so that the legend in the 2nd plot is more to the top right
 ## in the png file.
 dev.copy(png, "./EDA/ExData_Plotting1/plot4.png",
-    width = 480, height = 480, res=85)
+    width = 480, height = 480, res=80)
 dev.off()  # turn off device
 
